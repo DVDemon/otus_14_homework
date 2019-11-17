@@ -1,0 +1,81 @@
+language: cpp
+dist: trusty
+sudo: false
+os: linux
+
+matrix:
+  include:
+    - env: COMPILER=g++-6 BUILD=Debug STANDARD=14
+      compiler: gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - sourceline: 'ppa:mhier/libboost-latest'
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - boost1.67
+    - env: COMPILER=g++-6 BUILD=Release STANDARD=14
+      compiler: gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - sourceline: 'ppa:mhier/libboost-latest'
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - boost1.67
+
+
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    packages:
+      - doxygen
+
+before_script:
+- sudo apt-get install libgtest-dev
+- sudo apt-get install cmake # install cmake
+- PATH1=${PWD}
+- cd /usr/src/gtest
+- sudo cmake CMakeLists.txt
+- sudo make
+- sudo cp *.a /usr/lib
+- sudo mkdir /usr/local/lib/gtest
+- sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a
+- sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
+- cd $PATH1
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get update -qq
+before_install:
+  # C++17
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+install: 
+  # C++17
+  - sudo apt-get install -qq g++-6
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+  - sudo apt-get install graphviz
+script:
+- cmake .
+- cmake --build .
+#- cmake --build . --target test
+- cmake --build . --target package
+#- doxygen Doxyfile
+deploy:
+#  provider: pages
+#  skip_cleanup: true
+#  github_token: $GH_REPO_TOKEN
+#  on:
+#    branch: master
+
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -T 13_homework-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udvdemon:$BINTRAY_API_KEY "https://api.bintray.com/content/ddzuba/otus-cpp/13_homework/$TRAVIS_BUILD_NUMBER/13_homework-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
