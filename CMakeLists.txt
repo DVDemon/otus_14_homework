@@ -9,15 +9,14 @@ endif()
 #SET(CMAKE_CXX_COMPILER /usr/local/Cellar/gcc/HEAD-f2787da/bin/c++-HEAD)
 
 find_package(Threads)
-find_package(Boost COMPONENTS system regex REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
+
 
 add_executable(yamr main.cpp)
 
 set_target_properties(yamr PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON)
 
 target_include_directories(yamr PRIVATE "${CMAKE_BINARY_DIR}")
-target_link_libraries(yamr PRIVATE ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(yamr PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
 target_compile_options(yamr PRIVATE -Wall -Wextra -pedantic -Werror )
 
