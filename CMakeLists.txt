@@ -11,7 +11,7 @@ endif()
 find_package(Threads)
 
 
-add_executable(yamr main.cpp)
+add_executable(yamr main.cpp concurrent.cpp)
 
 set_target_properties(yamr PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON)
 
