@@ -1,7 +1,8 @@
 repo_name: DVDemon/otus_14_homework
 report_id: d25e7d62d1f6e74764573806d3345ba6
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-10T08:04:39+00:00'
+timestamp: '2024-01-05T08:57:50+00:00'
 requested_by: DVDemon
 provider: github
 branch: master
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1049/cplusplus.png
+  detection_source_url: https://github.com/DVDemon/otus_14_homework
   detection_source: Repo Metadata
 - name: CMake
   description: 'An open-source system that manages the build process '
@@ -25,6 +27,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Java Build Tools
   image_url: https://img.stackshare.io/service/2424/0UlUI_y1_400x400.jpg
+  detection_source_url: https://github.com/DVDemon/otus_14_homework
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -34,6 +37,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/DVDemon/otus_14_homework
   detection_source: Repo Metadata
 - name: Travis CI
   description: A hosted continuous integration service for open source and private
@@ -44,6 +48,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source_url: https://github.com/DVDemon/otus_14_homework/blob/master/.travis.yml
   detection_source: ".travis.yml"
   last_updated_by: dvdemon
   last_updated_on: 2019-11-17 08:13:01.000000000 Z
